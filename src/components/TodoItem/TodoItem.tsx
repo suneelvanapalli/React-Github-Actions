@@ -1,20 +1,23 @@
 import React from 'react';
 import classes from './TodoItem.module.css';
+import { TodosContext } from '../../context/TodoContext';
 
 interface Props {
   id: string;
   name: string;
-  onRemoveClick: (id: string) => void;
+  // onRemoveClick: (id: string) => void;
 }
 
 const TodoItem: React.FC<Props> = (props) => {
+  const todoContext = React.useContext(TodosContext);
   return (
     <React.Fragment>
       <li className={classes.item}>{props.name}</li>
-      <button className={classes.button}
+      <button
+        className={classes.button}
         onClick={(event: React.MouseEvent) => {
           event.preventDefault();
-          props.onRemoveClick(props.id);
+          todoContext.onRemoveClick(props.id);
         }}
       >
         Remove
