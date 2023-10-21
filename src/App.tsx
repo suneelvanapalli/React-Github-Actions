@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import NewTodo from './components/NewTodo/NewTodo';
+import TodoList from './components/TodoList/TodoList';
+import { Todo } from './models/todo';
 
-function App() {
+const App: React.FC = () => {
+  let initialState: Todo[] = [
+    new Todo('1', 'React Js'),
+    new Todo('2', 'Azure'),
+  ];
+  const [todoItems, setTodoItems] = useState<Todo[]>(initialState);
+
+  const onAddNewTodo = (newTodo: Todo) => {
+    setTodoItems((previous) => {
+      return [...previous, newTodo];
+    });
+  };
+
+  const onRemoveClick = (id: string) => {
+    setTodoItems((previous) => {
+      const updatedList = previous.filter((item) => item.id !== id);
+      return [...updatedList];
+    });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      {/* <Provider store={store}>
+        <Counter></Counter>
+      </Provider> */}
+      <NewTodo onAddTodo={onAddNewTodo}></NewTodo>
+      <TodoList onRemoveClick={onRemoveClick} items={todoItems}></TodoList>
     </div>
   );
-}
+};
 
 export default App;
