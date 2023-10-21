@@ -2,6 +2,8 @@ import { useRef, useContext } from 'react';
 import { Todo } from '../../models/todo';
 import classes from './NewTodo.module.css';
 import { TodosContext } from '../../context/TodoContext';
+import Button from '../../shared/Button';
+import Text from '../../shared/Text';
 
 //const NewTodo: React.FC<{ onAddTodo: (newTodo: Todo) => void }> = (props) => {
 const NewTodo: React.FC = () => {
@@ -21,10 +23,10 @@ const NewTodo: React.FC = () => {
   return (
     <form className={classes.form} onSubmit={submitHander}>
       <label>Id</label>
-      <input type='text' ref={idRef} />
+      <Text ref={idRef}></Text>
       <label>Todo text</label>
-      <input type='text' ref={nameRef} />
-      <button>Add</button>
+      <Text ref={nameRef}></Text>
+      <Button>Add</Button>
     </form>
   );
 };
