@@ -1,9 +1,9 @@
 export class Todo {
-    id: string;
+    id?: string;
     name: string;
 
-    constructor(Id: string, todoName: string) {
-        this.id = Id;
+    constructor(todoName: string) {
+        // this.id = Id;
         this.name = todoName;
     }
 }

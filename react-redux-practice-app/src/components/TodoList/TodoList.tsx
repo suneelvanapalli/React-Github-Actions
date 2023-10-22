@@ -3,10 +3,7 @@ import TodoItem from '../TodoItem/TodoItem';
 import classes from './TodoList.module.css';
 import { TodosContext } from '../../context/TodoContext';
 
-// interface Props {
-//   // items: Todo[];
-//   //onRemoveClick: (id: string) => void;
-// }
+
 
 const TodoList: React.FC = () => {
   const todoContext = React.useContext(TodosContext);
@@ -17,9 +14,11 @@ const TodoList: React.FC = () => {
           return (
             <TodoItem
               key={m.id}
-              id={m.id}
               name={m.name}
-              // onRemoveClick={props.onRemoveClick}
+              onRemoveClick={(event: React.MouseEvent) => {
+                event.preventDefault();
+                todoContext.onRemoveClick(m.id!);
+              }}
             ></TodoItem>
           );
         })}
