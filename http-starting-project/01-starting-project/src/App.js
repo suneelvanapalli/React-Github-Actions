@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import MoviesList from './components/MoviesList';
 import './App.css';
+import { useEffect } from 'react';
+import { useCallback } from 'react';
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -26,11 +28,11 @@ function App() {
   //     });
   // };
 
-  const fetchMovieHandler = async () => {
+  const fetchMovieHandler = useCallback(async () => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch('https://swapi.dev/api/film1/', {
+      const response = await fetch('https://swapi.dev/api/films/', {
         method: 'GET',
       });
       if (!response.ok) {
@@ -52,7 +54,11 @@ function App() {
       setIsLoading(false);
       setError(true);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchMovieHandler();
+  }, [fetchMovieHandler]);
 
   return (
     <React.Fragment>
