@@ -3,7 +3,7 @@ export class Todo {
     name: string;
 
     constructor(todoName: string) {
-        // this.id = Id;
+        this.id = todoName;
         this.name = todoName;
     }
 }

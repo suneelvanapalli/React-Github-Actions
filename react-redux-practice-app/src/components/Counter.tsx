@@ -1,5 +1,5 @@
 import React from 'react';
-import { decrement, increment } from '../store/todoslice';
+import { decrement, increment } from '../store/counterSlice';
 import { useAppSelector, useAppDispatch } from '../store/hooks';
 
 const Counter: React.FC = () => {

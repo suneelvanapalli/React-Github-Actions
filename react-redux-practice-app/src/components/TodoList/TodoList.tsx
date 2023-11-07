@@ -1,23 +1,30 @@
 import React from 'react';
 import TodoItem from '../TodoItem/TodoItem';
 import classes from './TodoList.module.css';
-import { TodosContext } from '../../context/TodoContext';
+//import { TodosContext } from '../../context/TodoContext';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { removeTodo } from '../../store/todoSlice';
 
 
 
 const TodoList: React.FC = () => {
-  const todoContext = React.useContext(TodosContext);
+  // const todoContext = React.useContext(TodosContext);
+  const todos = useAppSelector(state => state.todos.todos);
+  const dispatch = useAppDispatch()
+
+
   return (
     <React.Fragment>
       <ul className={classes.todos}>
-        {todoContext.todoItems.map((m) => {
+        {todos.map((m) => {
           return (
             <TodoItem
               key={m.id}
               name={m.name}
               onRemoveClick={(event: React.MouseEvent) => {
                 event.preventDefault();
-                todoContext.onRemoveClick(m.id!);
+                // todoContext.onRemoveClick(m.id!);
+                dispatch(removeTodo(m.id!))
               }}
             ></TodoItem>
           );

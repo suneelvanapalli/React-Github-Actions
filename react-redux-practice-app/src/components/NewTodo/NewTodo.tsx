@@ -5,11 +5,16 @@ import { TodosContext } from '../../context/TodoContext';
 // import Button from '../../shared/Button';
 // import Text from '../../shared/Text';
 import React from 'react';
+import { useAppSelector, useAppDispatch } from '../../store/hooks';
+import { addTodo } from '../../store/todoSlice';
 
 //const NewTodo: React.FC<{ onAddTodo: (newTodo: Todo) => void }> = (props) => {
 const NewTodo: React.FC = () => {
   const [isValid, setIsValid] = useState(true);
-  const todoContext = useContext(TodosContext);
+  //const todoContext = useContext(TodosContext);
+
+  const dispatch = useAppDispatch()
+  
   const submitHander = (event: React.FormEvent) => {
     event.preventDefault();
     // const todoId = idRef.current!.value;
@@ -22,7 +27,10 @@ const NewTodo: React.FC = () => {
       return;
     }
     const newTodo = new Todo(todoValue);
-    todoContext.onAddNewTodo(newTodo);
+    // todoContext.onAddNewTodo(newTodo);
+    // dispatch action with payload
+    dispatch(addTodo(newTodo));
+
     setIsValid(() => {
       return true;
     });

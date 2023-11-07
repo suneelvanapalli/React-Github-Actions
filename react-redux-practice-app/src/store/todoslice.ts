@@ -1,19 +1,20 @@
-import {  createSlice } from "@reduxjs/toolkit";
+import {  PayloadAction, createSlice } from "@reduxjs/toolkit";
 import {  initialState } from "../redux/reducers/counterReducer";
+import { Todo } from "../models/todo";
 
-const counterSlice = createSlice({
-    name: 'counter',
+const todoSlice = createSlice({
+    name: 'todos',
     initialState,
     reducers: {
-        increment: (state) => {
-            state.count++;
+        addTodo: (state, action: PayloadAction<Todo>) => {
+            state.todos.push(action.payload);
         },
-        decrement: (state) => {
-            state.count--;
+        removeTodo: (state,action: PayloadAction<string>) => {
+            state.todos.filter((item) => item.id !== action.payload);
         }
     }
 });
 
-export default counterSlice.reducer;
+export default todoSlice.reducer;
 
-export const { increment, decrement } = counterSlice.actions
+export const { addTodo, removeTodo } = todoSlice.actions
