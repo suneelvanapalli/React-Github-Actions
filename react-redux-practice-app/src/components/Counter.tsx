@@ -1,42 +1,26 @@
-// import { Component } from 'react';
-// import { connect } from 'react-redux';
+import React from 'react';
+import { decrement, increment } from '../store/todoslice';
+import { useAppSelector, useAppDispatch } from '../store/hooks';
 
-// class Counter extends Component {
-//   counter: number = 0;
+const Counter: React.FC = () => {
+  const count = useAppSelector((state) => state.counter.count);
+  const dispatch = useAppDispatch();
 
-//   incrementHandler() {
-//     this.props.increment();
-//   }
+  const incrementHandler = () => {
+    dispatch(increment());
+  };
 
-//   decrementHandler() {
-//     this.props.decrement();
-//   }
+  const decrementHandler = () => {
+    dispatch(decrement());
+  };
 
-//   render() {
-//     return (
-//       <main>
-//         <div>{this.counter}</div>
-//         <button onClick={this.incrementHandler}>Increment</button>
-//         <button onClick={this.decrementHandler}>Decrement</button>
-//       </main>
-//     );
-//   }
-// }
+  return (
+    <main>
+      <div>{count}</div>
+      <button onClick={incrementHandler}>Increment</button>
+      <button onClick={decrementHandler}>Decrement</button>
+    </main>
+  );
+};
 
-// const mapStateToProps = (state) => {
-//   return {
-//     counter: state.counter,
-//   };
-// };
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     increment : () => dispatch({ type: 'increment' }),
-//     decrement: () => dispatch({ type: 'decrement' })
-//   };
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Counter);
-
-const name = 'test';
-export default name;
+export default Counter;

@@ -1,3 +1,4 @@
+import Counter from './components/Counter';
 import Greeting from './components/Greeting/Greeting';
 import NewTodo from './components/NewTodo/NewTodo';
 import TodoList from './components/TodoList/TodoList';
@@ -14,6 +15,7 @@ const App: React.FC = () => {
       {/* <Provider store={store}>
         <Counter></Counter>
       </Provider> */}
+      <Counter></Counter>
       <Greeting></Greeting>
       <TodoContextProvider>
         <NewTodo></NewTodo>
