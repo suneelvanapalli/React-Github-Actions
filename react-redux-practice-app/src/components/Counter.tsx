@@ -1,6 +1,6 @@
 import React from 'react';
 import { decrement, increment } from '../store/counterSlice';
-import { useAppSelector, useAppDispatch } from '../store/hooks';
+import { useAppSelector, useAppDispatch } from '../store';
 
 const Counter: React.FC = () => {
   const count = useAppSelector((state) => state.counter.count);

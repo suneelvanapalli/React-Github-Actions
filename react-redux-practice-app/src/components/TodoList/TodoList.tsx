@@ -2,8 +2,8 @@ import React from 'react';
 import TodoItem from '../TodoItem/TodoItem';
 import classes from './TodoList.module.css';
 //import { TodosContext } from '../../context/TodoContext';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { removeTodo } from '../../store/todoSlice';
+import { useAppSelector, useAppDispatch } from '../../store';
 
 
 

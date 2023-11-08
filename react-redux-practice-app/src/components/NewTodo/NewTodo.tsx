@@ -1,11 +1,11 @@
-import { useRef, useContext, useState } from 'react';
+// import { useRef, useContext, useState } from 'react';
 import { Todo } from '../../models/todo';
 import classes from './NewTodo.module.css';
-import { TodosContext } from '../../context/TodoContext';
+//import { TodosContext } from '../../context/TodoContext';
 // import Button from '../../shared/Button';
 // import Text from '../../shared/Text';
-import React from 'react';
-import { useAppSelector, useAppDispatch } from '../../store/hooks';
+import React, { useState } from 'react';
+import { useAppDispatch } from '../../store';
 import { addTodo } from '../../store/todoSlice';
 
 //const NewTodo: React.FC<{ onAddTodo: (newTodo: Todo) => void }> = (props) => {
@@ -13,8 +13,8 @@ const NewTodo: React.FC = () => {
   const [isValid, setIsValid] = useState(true);
   //const todoContext = useContext(TodosContext);
 
-  const dispatch = useAppDispatch()
-  
+  const dispatch = useAppDispatch();
+
   const submitHander = (event: React.FormEvent) => {
     event.preventDefault();
     // const todoId = idRef.current!.value;

@@ -1,6 +1,14 @@
 import {  PayloadAction, createSlice } from "@reduxjs/toolkit";
-import {  initialState } from "../redux/reducers/counterReducer";
 import { Todo } from "../models/todo";
+
+export interface TodoState {
+    todos: Todo[];
+}
+
+export const initialState: TodoState = {
+    todos: [],
+};
+
 
 const todoSlice = createSlice({
     name: 'todos',
@@ -10,11 +18,11 @@ const todoSlice = createSlice({
             state.todos.push(action.payload);
         },
         removeTodo: (state,action: PayloadAction<string>) => {
-            state.todos.filter((item) => item.id !== action.payload);
+           state.todos = state.todos.filter((item) => item.id !== action.payload);
         }
     }
 });
 
-export default todoSlice.reducer;
+export const todoReducer =  todoSlice.reducer;
 
 export const { addTodo, removeTodo } = todoSlice.actions
