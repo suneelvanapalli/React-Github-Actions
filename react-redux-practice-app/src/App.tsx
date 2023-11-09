@@ -16,7 +16,7 @@ const App: React.FC = () => {
         <Counter></Counter>
       </Provider> */}
       <Counter></Counter>
-      <Greeting></Greeting>
+      {/* <Greeting></Greeting> */}
       <TodoContextProvider>
         <NewTodo></NewTodo>
         <TodoList></TodoList>

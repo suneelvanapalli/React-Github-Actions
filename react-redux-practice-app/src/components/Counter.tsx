@@ -1,6 +1,7 @@
 import React from 'react';
 import { decrement, increment } from '../store/counterSlice';
 import { useAppSelector, useAppDispatch } from '../store';
+import { Box, Button } from '@mui/material';
 
 const Counter: React.FC = () => {
   const count = useAppSelector((state) => state.counter.count);
@@ -15,11 +16,11 @@ const Counter: React.FC = () => {
   };
 
   return (
-    <main>
+    <Box>
       <div>{count}</div>
-      <button onClick={incrementHandler}>Increment</button>
-      <button onClick={decrementHandler}>Decrement</button>
-    </main>
+      <Button onClick={incrementHandler}>Increment</Button>
+      <Button onClick={decrementHandler}>Decrement</Button>
+    </Box>
   );
 };
 

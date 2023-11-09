@@ -4,6 +4,7 @@ import classes from './TodoList.module.css';
 //import { TodosContext } from '../../context/TodoContext';
 import { removeTodo } from '../../store/todoSlice';
 import { useAppSelector, useAppDispatch } from '../../store';
+import { List } from '@mui/material';
 
 
 
@@ -15,7 +16,7 @@ const TodoList: React.FC = () => {
 
   return (
     <React.Fragment>
-      <ul className={classes.todos}>
+      <List className={classes.todos}>
         {todos.map((m) => {
           return (
             <TodoItem
@@ -29,7 +30,7 @@ const TodoList: React.FC = () => {
             ></TodoItem>
           );
         })}
-      </ul>
+      </List>
     </React.Fragment>
   );
 };
