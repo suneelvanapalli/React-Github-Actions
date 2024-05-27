@@ -9,14 +9,21 @@ const QuestionTimer = (props: Props) => {
   const [remainingTime, setRemainingtime] = useState(props.timeout);
 
   useEffect(() => {
-    setTimeout(props.onTimeOutComplete, props.timeout);
+    const timer = setTimeout(props.onTimeOutComplete, props.timeout);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [props.timeout, props.onTimeOutComplete]);
 
   useEffect(() => {
-    setInterval(() => {
+    const createdInterval = setInterval(() => {
       setRemainingtime((prevState) => prevState - 100);
     }, 100);
-  }, []);
+    return () => {
+      clearInterval(createdInterval);
+    };
+  }, [props.timeout]);
 
   return (
     <progress

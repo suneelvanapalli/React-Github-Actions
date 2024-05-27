@@ -1,18 +1,45 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import questions from '../assets/questions';
 import quizCompletedImg from '../assets/quiz-complete.png';
 import QuestionTimer from './QuestionTimer';
 
 export default function Quiz() {
   const [userAnswers, setUserAnswers] = useState([]);
-  let activeQuestionIndex = userAnswers.length;
+  const [answerState, setAnswerState] = useState('');
+
+  let activeQuestionIndex =
+    answerState === '' ? userAnswers.length : userAnswers.length - 1;
+
+  const shuffledAnswers = questions[activeQuestionIndex].answers;
+  shuffledAnswers.sort(() => Math.random() - 0.5);
+
   const quizIsComplete = activeQuestionIndex === questions.length;
 
-  let selectUserAnswer = (selectedAnswer) => {
-    setUserAnswers((prevState) => {
-      return [...prevState, selectedAnswer];
-    });
-  };
+  let handleUserAnswer = useCallback(
+    function handleUserAnswer(selectedAnswer) {
+      setAnswerState('selected');
+      setUserAnswers((prevState) => {
+        return [...prevState, selectedAnswer];
+      });
+
+      setTimeout(() => {
+        if (selectedAnswer === questions[activeQuestionIndex].answers[0]) {
+          setAnswerState('correct');
+        } else {
+          setAnswerState('wrong');
+        }
+
+        setTimeout(() => {
+          setAnswerState('');
+        }, 2000);
+      }, 2000);
+    },
+    [activeQuestionIndex]
+  );
+
+  let handleNullAnswerSelection = useCallback(() => {
+    handleUserAnswer(null);
+  }, [handleUserAnswer]);
 
   if (quizIsComplete) {
     return (
@@ -23,28 +50,25 @@ export default function Quiz() {
     );
   }
 
-  // shuffle answers
-  const shuffledAnswers = questions[activeQuestionIndex].answers;
-  shuffledAnswers.sort(() => Math.random() - 0.5);
-
   return (
     <div id='quiz'>
       <div id='question'>
         <QuestionTimer
+          key={activeQuestionIndex}
           timeout={10000}
-          onTimeOutComplete={() => {
-            selectUserAnswer(null);
-          }}
+          onTimeOutComplete={handleNullAnswerSelection}
         ></QuestionTimer>
         <h2>{questions[activeQuestionIndex].text}</h2>
         <ul id='answers'>
           {shuffledAnswers.map((answer) => {
+            const isSelected = userAnswers[userAnswers.length - 1] === answer;
             return (
-              <li className='answer'>
+              <li key={answer} className='answer'>
                 <button
                   onClick={() => {
-                    selectUserAnswer(answer);
+                    handleUserAnswer(answer);
                   }}
+                  className={isSelected ? answerState : ''}
                 >
                   {answer}
                 </button>
