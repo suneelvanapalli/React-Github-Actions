@@ -6,7 +6,7 @@ import { act } from 'react-dom/test-utils';
 describe('Greeting component', () => {
   test('button is not clicked', () => {
     // arrange
-    render(<Greeting></Greeting>);
+    render(<Greeting />);
 
     // act
     //do nothing

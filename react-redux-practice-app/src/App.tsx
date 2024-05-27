@@ -1,6 +1,7 @@
 import Counter from './components/Counter';
 import Greeting from './components/Greeting/Greeting';
 import NewTodo from './components/NewTodo/NewTodo';
+import RhfComponent from './components/ReactHookFormComponent/RHF.Component';
 import TodoList from './components/TodoList/TodoList';
 import TodoContextProvider from './context/TodoContext';
 
@@ -21,6 +22,7 @@ const App: React.FC = () => {
         <NewTodo></NewTodo>
         <TodoList></TodoList>
       </TodoContextProvider>
+      <RhfComponent></RhfComponent>
     </div>
   );
 };
