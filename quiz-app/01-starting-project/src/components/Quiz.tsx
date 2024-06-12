@@ -3,6 +3,7 @@ import questions from '../assets/questions';
 import quizCompletedImg from '../assets/quiz-complete.png';
 import QuestionTimer from './QuestionTimer';
 import Answers from './Answers';
+import Question from './Question';
 
 export default function Quiz() {
   const [userAnswers, setUserAnswers] = useState([]);
@@ -10,9 +11,6 @@ export default function Quiz() {
 
   let activeQuestionIndex =
     answerState === '' ? userAnswers.length : userAnswers.length - 1;
-
-  const shuffledAnswers = questions[activeQuestionIndex].answers;
-  shuffledAnswers.sort(() => Math.random() - 0.5);
 
   const quizIsComplete = activeQuestionIndex === questions.length;
 
@@ -53,20 +51,16 @@ export default function Quiz() {
 
   return (
     <div id='quiz'>
-      <div id='question'>
-        <QuestionTimer
-          key={activeQuestionIndex}
-          timeout={10000}
-          onTimeOutComplete={handleNullAnswerSelection}
-        ></QuestionTimer>
-        <h2>{questions[activeQuestionIndex].text}</h2>
-        <Answers
-          answers={questions[activeQuestionIndex].answers}
-          answerState={answerState}
-          selectedAnswer={userAnswers[userAnswers.length - 1]}
-          onSelect={handleUserAnswer}
-        ></Answers>
-      </div>
+      <Question
+        key={activeQuestionIndex}
+        activeQuestionIndex={activeQuestionIndex}
+        answerState={answerState}
+        selectedAnswer={userAnswers[userAnswers.length - 1]}
+        questionText={questions[activeQuestionIndex].text}
+        answers={questions[activeQuestionIndex].answers}
+        onSelectAnswer={handleUserAnswer}
+        onNullAnswerSelection={handleNullAnswerSelection}
+      ></Question>
     </div>
   );
 }
