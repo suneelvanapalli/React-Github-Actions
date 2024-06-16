@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import QUESTIONS from '../assets/questions';
+//import QUESTIONS from '../assets/questions';
 import quizCompletedImg from '../assets/quiz-complete.png';
 import Question from './Question';
 
-export default function Quiz() {
+export default function Quiz({ QUESTIONS }) {
   const [userAnswers, setUserAnswers] = useState<string[]>([]);
   // const [answerState, setAnswerState] = useState('');
   let activeQuestionIndex = userAnswers.length;
@@ -64,6 +64,7 @@ export default function Quiz() {
     <div id='quiz'>
       <Question
         key={activeQuestionIndex}
+        QUESTIONS={QUESTIONS}
         index={activeQuestionIndex}
         onSelectAnswer={handleUserAnswer}
         onNullAnswerSelection={handleNullAnswerSelection}

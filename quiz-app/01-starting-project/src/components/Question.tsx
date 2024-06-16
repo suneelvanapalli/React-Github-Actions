@@ -1,9 +1,10 @@
 import Answers from './Answers';
 import QuestionTimer from './QuestionTimer';
-import QUESTIONS from '../assets/questions';
+//import QUESTIONS from '../assets/questions';
 import { useState } from 'react';
 
 export default function Question({
+  QUESTIONS,
   index,
   onSelectAnswer,
   onNullAnswerSelection,
