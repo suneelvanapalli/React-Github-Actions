@@ -41,8 +41,11 @@ export default function Question({
   }
   return (
     <div id='question'>
+      <h2>
+        {index + 1}/{QUESTIONS.length}
+      </h2>
       <QuestionTimer
-        timeout={10000}
+        timeout={20000}
         onTimeOutComplete={onNullAnswerSelection}
       ></QuestionTimer>
       <h2>{QUESTIONS[index].text}</h2>
