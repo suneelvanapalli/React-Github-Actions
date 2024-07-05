@@ -23,6 +23,10 @@ export default function Login() {
     });
   }
 
+  // Move to common input component
+  // useInput custom hook
+  // 3rd party form libraries
+
   return (
     <form onSubmit={handleSubmit}>
       <h2>Login</h2>
