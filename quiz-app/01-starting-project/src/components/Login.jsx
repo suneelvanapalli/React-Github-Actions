@@ -1,95 +1,37 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Input } from './Input';
+import { useInput } from '../hooks/useInput';
 
 export default function Login() {
-  const [formState, setFormState] = useState({
-    email: {
-      value: '',
-      hasError: false,
-      isTouched: false,
-    },
-    password: { value: '', hasError: false, isTouched: false },
-  });
+  const {
+    value: emailValue,
+    error: emailHasError,
+    handleInputChange: handleEmailInputChange,
+    handleBlur: handleEmailBlur,
+  } = useInput('', (value) => !value.includes('@'));
+
+  const {
+    value: passwordValue,
+    error: passwordHasError,
+    handleInputChange: handlePasswordInputChange,
+    handleBlur: handlePasswordBlur,
+  } = useInput('', (value) => !value.length < 6);
 
   const emailRef = useRef();
   const passwordRef = useRef();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formState);
+    //console.log(formState);
     console.log(emailRef.current.value, passwordRef.current.value);
 
-    // validate on submit
-    setFormState((prevState) => {
-      return {
-        ...prevState,
-        email: {
-          ...prevState.email,
-          isTouched: true,
-          hasError: !formState.email.value.includes('@'),
-        },
-      };
-    });
+    const isValidEmail = !emailValue.includes('@');
+    const isValidPassword = passwordValue.length < 6;
 
-    setFormState((prevState) => {
-      return {
-        ...prevState,
-        password: {
-          ...prevState.password,
-          isTouched: true,
-          hasError: formState.password.value.length < 6,
-        },
-      };
-    });
+    if (isValidEmail && isValidPassword) {
+      console.log('Submit form data');
+    }
   };
-
-  const onBlur = (identifier) => {
-    setFormState((prevState) => {
-      return {
-        ...prevState,
-        [identifier]: {
-          ...prevState[identifier],
-          isTouched: true,
-        },
-      };
-    });
-    // validate on submit
-    setFormState((prevState) => {
-      return {
-        ...prevState,
-        email: {
-          ...prevState.email,
-          hasError: !formState.email.value.includes('@'),
-        },
-      };
-    });
-
-    setFormState((prevState) => {
-      return {
-        ...prevState,
-        password: {
-          ...prevState.password,
-          hasError: formState.password.value.length < 6,
-        },
-      };
-    });
-  };
-
-  const saveFormState = (identifier, value) => {
-    setFormState((prevState) => {
-      return {
-        ...prevState,
-        [identifier]: {
-          ...prevState[identifier],
-          value: value,
-          isTouched: false,
-        },
-      };
-    });
-  };
-
-  // useInput custom hook
-  // 3rd party form libraries
 
   return (
     <form onSubmit={handleSubmit} noValidate>
@@ -104,17 +46,9 @@ export default function Login() {
             name='email'
             className='test'
             innerRef={emailRef}
-            error={
-              formState.email.isTouched && formState.email.hasError
-                ? 'Please enter a valid email'
-                : ''
-            }
-            onBlur={() => {
-              onBlur('email');
-            }}
-            onChange={(event) => {
-              saveFormState('email', event.target.value);
-            }}
+            error={emailHasError ? 'Please enter a valid email' : ''}
+            onBlur={handleEmailBlur}
+            onChange={handleEmailInputChange}
           ></Input>
         </div>
 
@@ -125,17 +59,9 @@ export default function Login() {
             type='password'
             name='password'
             innerRef={passwordRef}
-            error={
-              formState.password.isTouched && formState.password.hasError
-                ? 'Please enter a valid password'
-                : ''
-            }
-            onBlur={() => {
-              onBlur('password');
-            }}
-            onChange={(event) => {
-              saveFormState('password', event.target.value);
-            }}
+            error={passwordHasError ? 'Please enter a valid password' : ''}
+            onBlur={handlePasswordBlur}
+            onChange={handlePasswordInputChange}
           />
         </div>
       </div>
