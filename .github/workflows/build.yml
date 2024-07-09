@@ -38,3 +38,26 @@ jobs:
       - name: Run Tests
         run: |
           npm run test
+  Deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    defaults:
+      run:
+        working-directory: ./quiz-app/01-starting-project
+
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Deploy
+        run: |
+          echo "Deployed code"
