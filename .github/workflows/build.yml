@@ -62,3 +62,4 @@ jobs:
       - name: Deploy
         run: |
           echo "Deployed code"
+          echo "${{toJSON(github)}}"
