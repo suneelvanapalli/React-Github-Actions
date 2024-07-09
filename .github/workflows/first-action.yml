@@ -8,3 +8,7 @@ jobs:
         run: echo 'Hello world'
       - name: 'Step 2 - Print Bye'
         run: echo "Bye"
+      - name: 'Multiline print'
+        run: |
+        echo 'first command to print'
+        echo 'second command to print'
