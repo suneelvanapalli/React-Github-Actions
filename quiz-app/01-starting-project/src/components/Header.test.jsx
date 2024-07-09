@@ -4,9 +4,8 @@ import userEvent from '@testing-library/user-event';
 import Header from './Header';
 
 describe('Header', () => {
-  it('should render a paragraph', () => {
-    render(<Header />);
-
-    expect(screen.getAllByTestId('header')).toBeInTheDocument();
+  it('should match snapshot', () => {
+    const { baseElement } = render(<Header />);
+    expect(baseElement).toMatchSnapshot();
   });
 });
