@@ -24,5 +24,6 @@ jobs:
 
     - name: Build
       run: |
+        cd quiz-app\01-starting-project
         npm install
         npx webpack
