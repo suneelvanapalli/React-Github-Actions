@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [18.x]
 
     defaults:
       run:
@@ -31,5 +31,5 @@ jobs:
           npm install
 
       - name: Build
-        run: | 
+        run: |
           npm run build
