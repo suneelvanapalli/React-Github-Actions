@@ -19,7 +19,8 @@ jobs:
         working-directory: ./quiz-app/01-starting-project
 
     steps:
-      - uses: actions/checkout@v4
+      - name: checkout code
+        uses: actions/checkout@v4
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
