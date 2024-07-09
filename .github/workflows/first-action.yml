@@ -10,5 +10,5 @@ jobs:
         run: echo "Bye"
       - name: 'Multiline print'
         run: |
-        echo 'first command to print'
-        echo 'second command to print'
+          echo 'first command to print'
+          echo 'second command to print'
