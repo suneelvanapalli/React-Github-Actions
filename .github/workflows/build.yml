@@ -6,7 +6,10 @@ on:
   pull_request:
     types: 
       - opened
-    branches: ['master']
+    branches:
+      - master
+      - main
+      - feature/*
 
 defaults:
       run:
