@@ -76,14 +76,14 @@ jobs:
 
     steps:
      - name: checkout code
-      uses: actions/checkout@v4
+       uses: actions/checkout@v4
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-         node-version: ${{ matrix.node-version }}
+     - name: Use Node.js ${{ matrix.node-version }}
+       uses: actions/setup-node@v3
+       with:
+        node-version: ${{ matrix.node-version }}
 
-      - name: Deploy
-        run: |
+     - name: Deploy
+       run: |
           echo "Deployed code"
           echo "${{toJSON(github)}}"
