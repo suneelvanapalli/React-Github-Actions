@@ -57,7 +57,7 @@ jobs:
   steps:            
     - name: Build and Tests
       run: |
-      npm run build
+       npm run build
 
     - name: Run Tests
       run: |
