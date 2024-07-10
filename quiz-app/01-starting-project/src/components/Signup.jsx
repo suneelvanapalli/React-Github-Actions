@@ -5,9 +5,9 @@ export default function Signup() {
     const formData = new FormData(event.target);
     const acqData = formData.getAll('acquisition');
     const values = Object.fromEntries(formData.entries());
-    const data = {...values , acqData}
+    const data = {...values , acqData};
     console.log(data);
-  }
+  };
   
     return (
       <form onSubmit={handleSubmit}>
