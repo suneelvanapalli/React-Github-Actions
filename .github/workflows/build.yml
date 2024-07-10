@@ -1,4 +1,4 @@
-name: Build and run tests
+name: Build and run tests (quiz-app\01-starting-project)
 
 on:
   push:
