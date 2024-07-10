@@ -3,8 +3,11 @@ name: Build and run tests (quiz-app\01-starting-project)
 on:
   push:
     branches: ['master']
+    paths:
+      - 'quiz-app/01-starting-project/**'
+
   pull_request:
-    types: 
+    types:
       - opened
     branches:
       - master
@@ -14,16 +17,16 @@ on:
       - 'quiz-app/01-starting-project/**'
 
 defaults:
-      run:
-        working-directory: ./quiz-app/01-starting-project
+  run:
+    working-directory: ./quiz-app/01-starting-project
 
 jobs:
-  setup:  
+  setup:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [20.x]
-    
+
     steps:
       - name: checkout code
         uses: actions/checkout@v4
