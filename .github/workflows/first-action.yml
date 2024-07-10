@@ -12,3 +12,4 @@ jobs:
         run: |
           echo 'first command to print'
           echo 'second command to print'
+          echo '${{toJSON(github)}}'
