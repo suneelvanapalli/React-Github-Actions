@@ -89,6 +89,7 @@ jobs:
           npm run test
 
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     strategy:
       matrix:
