@@ -56,7 +56,7 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    outputs: 
+    outputs:
       script-file: ${{steps.publish.outputs.script-file}}
     strategy:
       matrix:
@@ -72,7 +72,7 @@ jobs:
       - name: Build
         run: |
           npm run build
-      
+
       - name: publish file name
         id: publish
         run: |
@@ -117,3 +117,5 @@ jobs:
           name: 'dist-files'
       - name: Output downloaded files
         run: ls
+      - name: output file name  from build job ouput
+        run: echo '${{needs.build.outputs.script-file}}'
