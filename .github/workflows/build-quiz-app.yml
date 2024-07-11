@@ -72,8 +72,9 @@ jobs:
       - name: Build and Tests
         run: |
           npm run build
+          
       - name: Upload artificats
-        uses: actions/upload-artficat@v4
+        uses: actions/upload-artifact@v4
         with:
           name: 'dist-files'
           path: |
