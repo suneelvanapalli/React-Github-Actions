@@ -103,4 +103,11 @@ jobs:
 
       - name: Deploy
         run: |
-          echo "Deployed code"x
+          echo "Deployed code"
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: 'dist-files'
+      - name: Output downloaded files
+        run: ls
