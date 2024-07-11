@@ -56,6 +56,8 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    outputs: 
+      script-file: ${{steps.publish.outputs.script-file}}
     strategy:
       matrix:
         node-version: [20.x]
@@ -67,11 +69,14 @@ jobs:
         run: |
           npm install
 
-      - name: Build and Tests
+      - name: Build
         run: |
           npm run build
-          cd dist
-          dir
+      
+      - name: publish file name
+        id: publish
+        run: |
+          find dist/assets/*.js -type f -execdir echo 'script-file{}' >> $GITHUB_OUTPUT ';'
 
       - name: Get files
         run: |
