@@ -38,7 +38,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
   lint:
-    needs: setup
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -56,7 +55,6 @@ jobs:
           npm run lint
 
   build:
-    needs: lint
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -72,7 +70,11 @@ jobs:
       - name: Build and Tests
         run: |
           npm run build
-          
+
+      - name: Get files
+        run: |
+          dir
+
       - name: Upload artificats
         uses: actions/upload-artifact@v4
         with:
@@ -85,7 +87,6 @@ jobs:
           npm run test
 
   deploy:
-    needs: build
     runs-on: ubuntu-latest
     strategy:
       matrix:
