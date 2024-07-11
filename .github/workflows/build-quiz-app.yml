@@ -73,14 +73,17 @@ jobs:
 
       - name: Get files
         run: |
+          cd dist
           dir
+          cd..
 
       - name: Upload artificats
         uses: actions/upload-artifact@v4
         with:
           name: 'dist-files'
           path: |
-            dist
+            dist/*
+            package.json
 
       - name: Run Tests
         run: |
