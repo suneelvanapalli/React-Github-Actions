@@ -5,6 +5,7 @@ on:
     branches: ['master']
     paths:
       - 'quiz-app/01-starting-project/**'
+      - 'build-quiz-app.yml'
 
   pull_request:
     types:
