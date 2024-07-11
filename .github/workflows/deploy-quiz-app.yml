@@ -1,5 +1,5 @@
-name: Build and run tests (quiz-app\01-starting-project)
-on: workflow_dispatch  
+name: Build and Deploy Quiz app to Azure Static web app
+on: workflow_dispatch
 
 defaults:
   run:
@@ -24,36 +24,36 @@ jobs:
       - name: Cache npm packages
         uses: actions/cache@v4
         with:
-            path: ~/.npm
-            key: node-modules-${{hashFiles('**/package-lock.json')}}
+          path: ~/.npm
+          key: node-modules-${{hashFiles('**/package-lock.json')}}
 
       - name: Install packages
         run: |
-            npm install
+          npm install
 
       - name: Linting
         run: |
-            npm run lint 
+          npm run lint
 
       - name: Run Tests
         run: |
-              npm run test
+          npm run test
 
       - name: Install packages
         run: |
-              npm install
-    
+          npm install
+
       - name: Build
         run: |
-              npm run build
-    
+          npm run build
+
       - name: publish file name
         id: publish
         run: |
-              find dist/assets/*.js -type f -execdir echo 'script-file={}' >> $GITHUB_OUTPUT ';'
+          find dist/assets/*.js -type f -execdir echo 'script-file={}' >> $GITHUB_OUTPUT ';'
 
       - name: Upload artificats
         uses: actions/upload-artifact@v4
         with:
-            name: 'dist-files'
-            path: quiz-app/01-starting-project/dist
+          name: 'dist-files'
+          path: quiz-app/01-starting-project/dist
