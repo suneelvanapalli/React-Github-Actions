@@ -66,3 +66,4 @@ jobs:
           app_location: 'quiz-app/01-starting-project/' # Location of the application code
           output_location: 'quiz-app/01-starting-project/dist/' # Location of the build output directory
           skip_app_build: true
+          skip_api_build: true
