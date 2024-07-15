@@ -1,15 +1,14 @@
-import Header from './components/Header';
 import React, { useState } from 'react';
 import Quiz from './components/Quiz';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
 
 import QUESTIONS_AUS from './assets/questions_Australia';
 import QUESTIONS_beyblade from './assets/questions_beyblade';
 import questions_space from './assets/questions_space';
 import questions_english from './assets/questions_english';
+import questions_cs from './assets/questions_christianstudies';
 
-import { Card } from '@mui/material';
+import { Card, Typography } from '@mui/material';
+import questions_math from './assets/questions_math';
 
 export default function StandardImageList() {
   const [displayQuiz, setDisplayQuiz] = useState<boolean>(false);
@@ -22,15 +21,32 @@ export default function StandardImageList() {
     | null
   >(null);
 
-  function displayDashboard() {
-    return (
-      <ImageList sx={{ width: 1000, height: 1000 }} cols={3} rowHeight={164}>
-        {itemData.map((item) => (
-          <Card onClick={() => onSelection(item.title)}>{item.title}</Card>
-        ))}
-      </ImageList>
-    );
-  }
+  const itemData = [
+    {
+      img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
+      title: 'Space',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
+      title: 'Bey Blade',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
+      title: 'Australia',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
+      title: 'English',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
+      title: 'Maths',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
+      title: 'Christian Studies',
+    },
+  ];
 
   function onSelection(selectedTopic) {
     if (selectedTopic === 'Space') {
@@ -41,33 +57,25 @@ export default function StandardImageList() {
       setQuestions(QUESTIONS_AUS);
     } else if (selectedTopic === 'English') {
       setQuestions(questions_english);
+    } else if (selectedTopic === 'Maths') {
+      setQuestions(questions_math);
+    } else if (selectedTopic === 'Christian Studies') {
+      setQuestions(questions_cs);
     }
     setDisplayQuiz(true);
   }
 
   return (
     <>
-      <h3>Hello Suhas! Please pick a topic for the quiz! </h3>
-      {displayQuiz ? <Quiz QUESTIONS={questions}></Quiz> : displayDashboard()}
+      <Typography variant='h3' component='h3'>
+        Welcome ! Please pick a topic for the quiz!
+      </Typography>
+
+      {displayQuiz && <Quiz QUESTIONS={questions}></Quiz>}
+      {!displayQuiz &&
+        itemData.map((item) => (
+          <Card onClick={() => onSelection(item.title)}>{item.title}</Card>
+        ))}
     </>
   );
 }
-
-const itemData = [
-  {
-    img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
-    title: 'Space',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
-    title: 'Bey Blade',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
-    title: 'Australia',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
-    title: 'English',
-  },
-];
