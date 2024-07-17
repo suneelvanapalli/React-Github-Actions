@@ -53,7 +53,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: 'dist-files'
-          path: quiz-app/01-starting-project/dist
+          path: forms/01-starting-project/dist
   reuse_workflow:
     needs: build
     uses: ./.github/workflows/reusable_workflow.yml
