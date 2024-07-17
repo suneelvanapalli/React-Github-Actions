@@ -67,4 +67,4 @@ jobs:
     steps:
       - name: 'Print reuse_workflow output'
         run: |
-          echo ${{needs.reusable_workflow.outputs.result}}
+          echo ${{needs.reuse_workflow.outputs.result}}
