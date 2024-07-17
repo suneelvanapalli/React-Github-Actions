@@ -61,3 +61,10 @@ jobs:
       artifact_name: 'dist-files'
     secrets:
       some-secret: ${{secrets.QUIZ_APP_AZURE_STATIC_WEB_APPS_API_TOKEN}}
+  print_deploy_result:
+    runs-on: ubuntu-latest
+    needs: reuse_workflow
+    steps:
+      - name: 'Print reuse_workflow output'
+        run: |
+          echo ${{needs.reusable_workflow.outputs.result}}
