@@ -1,0 +1,59 @@
+name: Build Forms project
+on: workflow_dispatch
+
+defaults:
+  run:
+    working-directory: ./forms/01-starting-project
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Cache npm packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: node-modules-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install packages
+        run: |
+          npm install
+
+      - name: Linting
+        run: |
+          npm run lint
+
+      - name: Run Tests
+        run: |
+          npm run test
+
+      - name: Build
+        run: |
+          npm run build
+
+      - name: publish file name
+        id: publish
+        run: |
+          find dist/assets/*.js -type f -execdir echo 'script-file={}' >> $GITHUB_OUTPUT ';'
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: 'dist-files'
+          path: quiz-app/01-starting-project/dist
+  reuse_workflow:
+    uses: ./.github/workflows/reusable_workflow.yml
+    with:
+      artifact_name: 'dist-files'
