@@ -33,4 +33,4 @@ jobs:
       - name: 'set workflow output'
         id: set-result
         run: |
-          echo 'result={}' >> $GITHUB_OUTPUT
+          echo 'result=success' >> $GITHUB_OUTPUT
