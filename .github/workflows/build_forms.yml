@@ -59,3 +59,5 @@ jobs:
     uses: ./.github/workflows/reusable_workflow.yml
     with:
       artifact_name: 'dist-files'
+    secrets:
+      some-secret: ${{secrets.QUIZ_APP_AZURE_STATIC_WEB_APPS_API_TOKEN}}

@@ -7,6 +7,10 @@ on:
         required: true
         default: dist
         type: 'string'
+    secrets:
+      some-secret:
+        required: true
+        description: 'A token passed from the caller workflow'
 jobs:
   first_job:
     runs-on: ubuntu-latest
