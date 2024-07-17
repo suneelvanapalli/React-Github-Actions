@@ -1,4 +1,4 @@
-name: manual workflow
+name: reusable  workflow
 on: workflow_call
 jobs:
   first_job:
