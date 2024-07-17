@@ -1,12 +1,11 @@
 name: Build Forms project
 on: workflow_dispatch
 
-defaults:
-  run:
-    working-directory: ./forms/01-starting-project
-
 jobs:
   build:
+    defaults:
+      run:
+        working-directory: ./forms/01-starting-project
     runs-on: ubuntu-latest
     strategy:
       matrix:
