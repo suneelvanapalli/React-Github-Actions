@@ -2,7 +2,7 @@ export default function Login() {
   const handleSubmit = (event) => { 
     event.preventDefault();
     console.log('submitted');
-  }
+  };
   return (
     <form onSubmit={handleSubmit}>
       <h2>Login</h2>
