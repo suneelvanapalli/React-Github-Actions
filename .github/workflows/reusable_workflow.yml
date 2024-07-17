@@ -1,6 +1,11 @@
 name: reusable  workflow
 on:
   workflow_call:
+    outputs:
+      result:
+        description: 'output of the workflow'
+        value: ${{jobs.first_job.outputs.outcome}}
+
     inputs:
       artifact_name:
         description: 'The name of the artifact to be deployed'
@@ -13,6 +18,8 @@ on:
         description: 'A token passed from the caller workflow'
 jobs:
   first_job:
+    outputs:
+      outcome: ${{steps.set-result.outputs.result}}
     runs-on: ubuntu-latest
     steps:
       - name: 'Get artifact'
@@ -23,3 +30,7 @@ jobs:
         run: ls
       - name: 'Step 1'
         run: echo 'Reused from another workflow'
+      - name: 'set workflow output'
+        id: set-result
+        run: |
+          echo 'result={}' >> $GITHUB_OUTPUT
