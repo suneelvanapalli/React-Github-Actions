@@ -3,6 +3,8 @@ on: [workflow_dispatch, issues]
 jobs:
   first_job:
     runs-on: ubuntu-latest
+    container:
+      image: node:20
     steps:
       - name: 'Step 1- Print Hello'
         run: echo 'Hello world'
