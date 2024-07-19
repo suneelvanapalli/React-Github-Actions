@@ -1,5 +1,0 @@
-name: 'Custom javascript action'
-description: 'Custom javascript action'
-runs:
-  using: 'node20'
-  main: 'index.js'
