@@ -1,11 +1,12 @@
 name: 'Get Or Cache dependencies'
 description: 'Retrieve or cache dependencies'
-defaults:
-  run:
-    working-directory: ./forms/01-starting-project
 runs:
   using: 'composite'
   steps:
+    - name: List directory
+      shell: bash
+      run: |
+        ls
     - name: Cache npm packages
       id: cache
       uses: actions/cache@v4
