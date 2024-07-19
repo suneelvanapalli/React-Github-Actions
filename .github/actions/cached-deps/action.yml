@@ -1,9 +1,5 @@
 name: 'Get Or Cache dependencies'
 description: 'Retrieve or cache dependencies'
-#inputs:
-  #working_directory_path:
-    #description: the path of custom directory to execute npm install
-    #required: true
 defaults:
   run:
     working-directory: ./forms/01-starting-project
