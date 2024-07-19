@@ -1,11 +1,17 @@
 name: 'Get Or Cache dependencies'
 description: 'Retrieve or cache dependencies'
+inputs:
+  working-directory: # id of input
+    description: 'working directory'
+    required: true
 runs:
   using: 'composite'
   steps:
     - name: List directory
       shell: bash
       run: |
+        ls
+        cd ${{ inputs.working-directory }}
         ls
     - name: Cache npm packages
       id: cache
@@ -17,4 +23,5 @@ runs:
     - name: Install packages
       shell: bash
       run: |
+        cd ${{ inputs.working-directory }}
         npm install
