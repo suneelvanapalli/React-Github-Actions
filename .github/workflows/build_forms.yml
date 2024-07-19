@@ -18,7 +18,7 @@ jobs:
       - name: Load and Cache dependencies
         uses: ./.github/actions/cached-deps
         with:
-          package-name: ./forms/01-starting-project
+          working_directory_path: ./forms/01-starting-project
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
