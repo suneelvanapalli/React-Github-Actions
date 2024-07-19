@@ -4,6 +4,10 @@ inputs:
   working-directory: # id of input
     description: 'working directory'
     required: true
+  cache-enabled:
+    description: 'pass true or false to enable cache'
+    required: false
+    default: true
 runs:
   using: 'composite'
   steps:
@@ -17,10 +21,11 @@ runs:
       id: cache
       uses: actions/cache@v4
       with:
-        path: ~/.npm
+        path: node_modules
         key: node-modules-${{ hashFiles('**/package-lock.json') }}
 
     - name: Install packages
+      if: steps.cache.outputs.cache-hit != 'true'
       shell: bash
       run: |
         cd ${{ inputs.working-directory }}
