@@ -20,6 +20,9 @@ jobs:
         with:
           working-directory: forms/01-starting-project
 
+      - name: Custom JS action
+        uses: ./.github/actions/custom-js-actions
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
