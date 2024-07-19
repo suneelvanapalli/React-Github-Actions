@@ -1,0 +1,16 @@
+name: 'Get Or Cache dependencies'
+description: 'Retrieve or cache dependencies'
+runs:
+  using: 'composite'
+  steps:
+    - name: Cache npm packages
+      id: cache
+      uses: actions/cache@v4
+      with:
+        path: ~/.npm
+        key: node-modules-${{ hashFiles('**/package-lock.json') }}
+
+    - name: Install packages
+      shell: bash
+      run: |
+        npm install
