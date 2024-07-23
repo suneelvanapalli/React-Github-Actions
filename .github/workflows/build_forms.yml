@@ -3,6 +3,8 @@ on: workflow_dispatch
 
 jobs:
   build:
+    permissions:
+      issues: write
     defaults:
       run:
         working-directory: ./forms/01-starting-project
